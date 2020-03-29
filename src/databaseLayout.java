@@ -30,6 +30,7 @@ public class databaseLayout extends JFrame{
     private JButton submitButton5;
     private JButton runDivisionQueryButton;
     private JComboBox JComboBoxPassenger;
+    private JTable table1;
 
     public databaseLayout() {
         add(panel1);
