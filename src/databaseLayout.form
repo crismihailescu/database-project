@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="databaseLayout">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="843" height="572"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="cd247" binding="tabbedPane1" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="5f5f2" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Home"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4ba3f" class="javax.swing.JLabel">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Please use tabs to navigate through different queries"/>
+                </properties>
+              </component>
+              <hspacer id="e662f">
+                <constraints>
+                  <card name="Card2"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <grid id="aa121" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Insert"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="a6687">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="64400" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="This will insert user generated fields for either a Passenger or Cargo Train"/>
+                    </properties>
+                  </component>
+                  <splitpane id="b57c0">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties>
+                      <orientation value="0"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <splitpane id="7b2c5">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <splitpane id="bf99c">
+                            <constraints>
+                              <splitpane position="right"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="a6c38" class="javax.swing.JTextField" binding="modelTextField1" default-binding="true">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Model"/>
+                                </properties>
+                              </component>
+                              <splitpane id="b8362">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                                <properties/>
+                                <border type="none"/>
+                                <children>
+                                  <component id="f3f55" class="javax.swing.JButton" binding="submitPassengerTrainButton" default-binding="true">
+                                    <constraints>
+                                      <splitpane position="right"/>
+                                    </constraints>
+                                    <properties>
+                                      <horizontalTextPosition value="11"/>
+                                      <text value="Submit Passenger Train"/>
+                                    </properties>
+                                  </component>
+                                  <component id="21e10" class="javax.swing.JTextField" binding="passengerCapacityTextField" default-binding="true">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Passenger Capacity"/>
+                                    </properties>
+                                  </component>
+                                </children>
+                              </splitpane>
+                            </children>
+                          </splitpane>
+                          <splitpane id="6abd7">
+                            <constraints>
+                              <splitpane position="left"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="f3732" class="javax.swing.JTextField" binding="passengerTrainIDTextField" default-binding="true">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                                <properties>
+                                  <text value="PassengerTrainID"/>
+                                </properties>
+                              </component>
+                              <component id="78245" class="javax.swing.JComboBox" binding="JComboBoxPassenger">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                                <properties>
+                                  <model>
+                                    <item value="IsUnderMaintenance (Select One)"/>
+                                    <item value="Yes"/>
+                                    <item value="No"/>
+                                  </model>
+                                </properties>
+                              </component>
+                            </children>
+                          </splitpane>
+                        </children>
+                      </splitpane>
+                      <splitpane id="b3404">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <dividerLocation value="231"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <splitpane id="b2853">
+                            <constraints>
+                              <splitpane position="left"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="a5627" class="javax.swing.JTextField" binding="cargoTrainIDTextField" default-binding="true">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                                <properties>
+                                  <text value="CargoTrainID"/>
+                                </properties>
+                              </component>
+                              <component id="8afb" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                                <properties>
+                                  <model>
+                                    <item value="IsUnderMaintenance (Select One)"/>
+                                    <item value="Yes"/>
+                                    <item value="No"/>
+                                  </model>
+                                </properties>
+                              </component>
+                            </children>
+                          </splitpane>
+                          <splitpane id="4b30">
+                            <constraints>
+                              <splitpane position="right"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="d9f7d" class="javax.swing.JTextField" binding="modelTextField" default-binding="true">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Model"/>
+                                </properties>
+                              </component>
+                              <splitpane id="21367">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                                <properties/>
+                                <border type="none"/>
+                                <children>
+                                  <component id="f7990" class="javax.swing.JButton" binding="submitCargoTrainButton" default-binding="true">
+                                    <constraints>
+                                      <splitpane position="right"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Submit Cargo Train"/>
+                                    </properties>
+                                  </component>
+                                  <component id="8175a" class="javax.swing.JTextField" binding="cargoCapacityTextField" default-binding="true">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Cargo Capacity"/>
+                                    </properties>
+                                  </component>
+                                </children>
+                              </splitpane>
+                            </children>
+                          </splitpane>
+                        </children>
+                      </splitpane>
+                    </children>
+                  </splitpane>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="18cbc" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Delete"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="c70c2">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="701f7">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="5b6f1" class="javax.swing.JButton" binding="submitButton" default-binding="true">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties>
+                          <text value="Submit"/>
+                        </properties>
+                      </component>
+                      <component id="fdcb2" class="javax.swing.JTextField" binding="passengerIDTextField" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="PassengerID"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="5ded6" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Delete Passenger based on PassengerID"/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="5c834" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Update"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="a51da">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="b6bce">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <splitpane id="a8cd">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="e5696" class="javax.swing.JButton" binding="submitButton1" default-binding="true">
+                            <constraints>
+                              <splitpane position="right"/>
+                            </constraints>
+                            <properties>
+                              <text value="Submit"/>
+                            </properties>
+                          </component>
+                          <component id="1d552" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+                            <constraints>
+                              <splitpane position="left"/>
+                            </constraints>
+                            <properties>
+                              <enabled value="false"/>
+                              <model>
+                                <item value="Produce"/>
+                                <item value="Furniture"/>
+                                <item value="Oil &amp; Gas"/>
+                                <item value="Glass"/>
+                                <item value="Frozen Foods"/>
+                                <item value="Electronics"/>
+                              </model>
+                            </properties>
+                          </component>
+                        </children>
+                      </splitpane>
+                      <component id="409c2" class="javax.swing.JTextField" binding="shipmentIDTextField" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="ShipmentID"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="c8045" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Update query for Shipment Type of CargoShipment based on ShipmentID "/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="83312" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Select"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="dbbc4">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="75560">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="725a1" class="javax.swing.JButton" binding="submitButton2" default-binding="true">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties>
+                          <text value="Submit"/>
+                        </properties>
+                      </component>
+                      <component id="aad18" class="javax.swing.JTextField" binding="maxPriceTextField" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="Max Price"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="d4ddb" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Select query for Tickets less than inputted price"/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="a999d" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Projection"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="ec9a6">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="272bf">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="3ab67" class="javax.swing.JButton" binding="submitButton3" default-binding="true">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties>
+                          <text value="Submit"/>
+                        </properties>
+                      </component>
+                      <component id="40c8b" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="TrainID"/>
+                            <item value="ArrivalTime"/>
+                            <item value="LocationID"/>
+                            <item value="IsDelayed"/>
+                          </model>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="3d9a1" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Projection to select a column from Arrivals"/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="c19c7" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Join"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="30808">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="bfb2f">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c5007" class="javax.swing.JTextField" binding="locationIDTextField" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="LocationID"/>
+                        </properties>
+                      </component>
+                      <component id="c8645" class="javax.swing.JButton" binding="submitButton4" default-binding="true">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties>
+                          <text value="Submit"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="8858e" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Join for Arrivals and Departures based on an inputted LocationID"/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="77d8b" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Aggregation"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="fe352">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="a8820" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Aggregation query to count number of technicians "/>
+                    </properties>
+                  </component>
+                  <splitpane id="a6d5c">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <splitpane id="f2bb9">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <splitpane id="5419e">
+                            <constraints>
+                              <splitpane position="left"/>
+                            </constraints>
+                            <properties>
+                              <orientation value="0"/>
+                            </properties>
+                            <border type="none"/>
+                            <children>
+                              <splitpane id="dc2d5">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                                <properties>
+                                  <orientation value="0"/>
+                                </properties>
+                                <border type="none"/>
+                                <children>
+                                  <component id="ca48e" class="javax.swing.JButton" binding="runAggregationQueryButton" default-binding="true">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Run Aggregation Query"/>
+                                    </properties>
+                                  </component>
+                                  <vspacer id="4fdab">
+                                    <constraints>
+                                      <splitpane position="right"/>
+                                    </constraints>
+                                  </vspacer>
+                                </children>
+                              </splitpane>
+                              <vspacer id="b5c54">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                              </vspacer>
+                            </children>
+                          </splitpane>
+                          <hspacer id="84bcd">
+                            <constraints>
+                              <splitpane position="right"/>
+                            </constraints>
+                          </hspacer>
+                        </children>
+                      </splitpane>
+                      <hspacer id="5aaf">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                      </hspacer>
+                    </children>
+                  </splitpane>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="ee3ed" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Nested Aggregation"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="f1449">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <orientation value="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="33fee">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="5b99d" class="javax.swing.JTextField" binding="trainIDTextField" default-binding="true">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="TrainID"/>
+                        </properties>
+                      </component>
+                      <component id="74bf5" class="javax.swing.JButton" binding="submitButton5" default-binding="true">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties>
+                          <text value="Submit"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </splitpane>
+                  <component id="c76f9" class="javax.swing.JLabel">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties>
+                      <text value="Run Nested Aggregation query to find number of passengers based on inputted TrainID, if left blank all train counts will be returned"/>
+                    </properties>
+                  </component>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+          <grid id="a3993" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Division"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <splitpane id="753c4">
+                <constraints>
+                  <card name="Card1"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <splitpane id="976bc">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <splitpane id="4a8d7">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <orientation value="0"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <splitpane id="8328a">
+                            <constraints>
+                              <splitpane position="right"/>
+                            </constraints>
+                            <properties>
+                              <orientation value="0"/>
+                            </properties>
+                            <border type="none"/>
+                            <children>
+                              <component id="35e5d" class="javax.swing.JButton" binding="runDivisionQueryButton" default-binding="true">
+                                <constraints>
+                                  <splitpane position="left"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Run Division Query"/>
+                                </properties>
+                              </component>
+                              <vspacer id="7af84">
+                                <constraints>
+                                  <splitpane position="right"/>
+                                </constraints>
+                              </vspacer>
+                            </children>
+                          </splitpane>
+                          <vspacer id="ee211">
+                            <constraints>
+                              <splitpane position="left"/>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </splitpane>
+                      <hspacer id="47ff8">
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                      </hspacer>
+                    </children>
+                  </splitpane>
+                  <hspacer id="3db7c">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </splitpane>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
