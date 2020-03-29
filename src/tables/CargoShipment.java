@@ -1,11 +1,11 @@
 package tables;
 
-public class cargoShipment {
+public class CargoShipment {
     private int shipmentID;
     private int purchaserID;
     private String cargoType;
 
-    public cargoShipment(int shipmentID, int purchaserID, String cargoType) {
+    public CargoShipment(int shipmentID, int purchaserID, String cargoType) {
         this.shipmentID = shipmentID;
         this.purchaserID = purchaserID;
         this.cargoType = cargoType;
