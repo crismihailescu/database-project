@@ -1,6 +1,6 @@
 package tables;
 
-public class Maintains {
+public class Maintains implements Table {
     int technicianID;
     int passengerTrainID;
     int cargoTrainID;

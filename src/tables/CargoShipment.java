@@ -1,6 +1,6 @@
 package tables;
 
-public class CargoShipment {
+public class CargoShipment implements Table{
     private int shipmentID;
     private int purchaserID;
     private String cargoType;

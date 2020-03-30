@@ -1,6 +1,6 @@
 package tables;
 
-public class Ticket {
+public class Ticket implements Table {
     private int TicketID;
     private int PassengerID;
     private int Price;

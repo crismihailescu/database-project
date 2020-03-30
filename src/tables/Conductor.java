@@ -1,6 +1,6 @@
 package tables;
 
-public class Conductor {
+public class Conductor implements Table {
     private int conductorID;
     private String conductorName;
 

@@ -2,7 +2,7 @@ package tables;
 
 import java.sql.Date;
 
-public class Passenger {
+public class Passenger implements Table {
     private int passengerID;
     private String name;
     private Date dateOfBirth;

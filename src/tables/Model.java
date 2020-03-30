@@ -1,6 +1,6 @@
 package tables;
 
-public class Model {
+public class Model implements Table{
     private int model;
     private int cargoCapacity;
     private int passengerCapacity;
