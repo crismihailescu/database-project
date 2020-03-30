@@ -205,5 +205,11 @@ public class Database {
 
         return c;
     }
-    
+
+    public boolean deleteTicket(int ticketID) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "delete from Ticket t where t.ticketID = " + ticketID;
+        int result = s.executeUpdate(query);
+        return result == 1;
+    }
 }
