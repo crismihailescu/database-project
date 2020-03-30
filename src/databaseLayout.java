@@ -1,6 +1,13 @@
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
+import database.Database;
+
+import tables.*;
 
 public class databaseLayout extends JFrame{
     private JTabbedPane tabbedPane1;
@@ -47,6 +54,29 @@ public class databaseLayout extends JFrame{
                 String cargoTrainModel = modelTextField.getText();
                 String cargoCapacity = cargoCapacityTextField.getText();
                 // TODO: RUN QUERY
+                List<CargoTrain> cargoTrainsTable = null;
+                try {
+                    cargoTrainsTable = Database.getInstance().viewCargoTrain();
+                } catch (SQLException exc) {
+                    System.out.println("Error on Cargo Train table");
+                }
+
+                String[] cargoTrainColumnNames = {"CargoTrainID", "IsUnderMaintenance", "Model"};
+
+                Object cargoTrainJTABLE[][] = new Object[0][0];
+                if (!cargoTrainsTable.isEmpty()) {
+                    cargoTrainJTABLE = new Object[cargoTrainsTable.size()][3];
+                    Iterator<CargoTrain> iterator = cargoTrainsTable.iterator();
+                    CargoTrain cg = null;
+                    for (int r = 0; r < cargoTrainsTable.size(); r++) {
+                        cg = iterator.next();
+                        cargoTrainJTABLE[r][0] = cg.getCargoTrainID();
+                        cargoTrainJTABLE[r][1] = cg.getIsUnderMaintenance();
+                        cargoTrainJTABLE[r][2] = cg.getModel();
+                    }
+                }
+
+                table1 = new JTable(cargoTrainJTABLE, cargoTrainColumnNames);
             }
         });
 
