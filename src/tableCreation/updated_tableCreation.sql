@@ -25,15 +25,15 @@ CREATE TABLE Model(
 CREATE TABLE CargoTrain(
     CargoTrainID INTEGER PRIMARY KEY,
     IsUnderMaintenance CHAR(3),
-    Model INTEGER,
-    FOREIGN KEY (Model) REFERENCES Model ON DELETE SET NULL
+    ModelID INTEGER,
+    FOREIGN KEY (ModelID) REFERENCES Model ON DELETE SET NULL
     );
 
 CREATE TABLE PassengerTrain(
     PassengerTrainID INTEGER PRIMARY KEY,
     IsUnderMaintenance CHAR(3),
-    Model INTEGER,
-    FOREIGN KEY (Model) REFERENCES Model ON DELETE SET NULL
+    ModelID INTEGER,
+    FOREIGN KEY (ModelID) REFERENCES Model ON DELETE SET NULL
     );
 
 CREATE TABLE CargoType(
@@ -66,7 +66,7 @@ CREATE TABLE Ticket(
     TicketID INTEGER PRIMARY KEY,
     PassengerID INTEGER,
     Price INTEGER,
-    FOREIGN KEY(PassengerID) references Passenger ON DELETE CASCADE
+    FOREIGN KEY (PassengerID) references Passenger ON DELETE CASCADE
 );
 
 CREATE TABLE Arrival(
@@ -75,7 +75,7 @@ CREATE TABLE Arrival(
     ArrivalTime TIMESTAMP,
     LocationID CHAR(3),
     IsDelayed CHAR(3),
-    PRIMARY KEY(CargoTrainID, PassengerTrainID, ArrivalTime, LocationID)
+    PRIMARY KEY (CargoTrainID, PassengerTrainID, ArrivalTime, LocationID)
     );
 
 CREATE TABLE Departure(
@@ -84,33 +84,33 @@ CREATE TABLE Departure(
     DepartureTime TIMESTAMP,
     LocationID CHAR(3),
     IsDelayed CHAR(3),
-    PRIMARY KEY(CargoTrainID, PassengerTrainID, DepartureTime, LocationID)
+    PRIMARY KEY (CargoTrainID, PassengerTrainID, DepartureTime, LocationID)
     );
 
 CREATE TABLE Maintains(
     TechnicianID INTEGER,
     PassengerTrainID INTEGER,
     CargoTrainID INTEGER,
-    PRIMARY KEY(TechnicianID, PassengerTrainID, CargoTrainID),
-    FOREGIN KEY(TechnicianID) references Technician ON DELETE CASCADE,
-    FOREIGN KEY(PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
-    FOREIGN KEY(CargoTrainID) references CargoTrain ON DELETE CASCADE
+    PRIMARY KEY (TechnicianID, PassengerTrainID, CargoTrainID),
+    FOREIGN KEY (TechnicianID) references Technician ON DELETE CASCADE,
+    FOREIGN KEY (PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
+    FOREIGN KEY (CargoTrainID) references CargoTrain ON DELETE CASCADE
     );
 
 CREATE TABLE Operates(
     PassengerTrainID INTEGER,
     CargoTrainID INTEGER,
     ConductorID INTEGER,
-    PRIMARY KEY(ConductorID, PassengerTrainID, CargoTrainID),
-    FOREIGN KEY(ConductorID) references Conductor ON DELETE CASCADE,
-    FOREIGN KEY(PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
-    FOREIGN KEY(CargoTrainID) references CargoTrain ON DELETE CASCADE
+    PRIMARY KEY (ConductorID, PassengerTrainID, CargoTrainID),
+    FOREIGN KEY (ConductorID) references Conductor ON DELETE CASCADE,
+    FOREIGN KEY (PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
+    FOREIGN KEY (CargoTrainID) references CargoTrain ON DELETE CASCADE
     );
 
 CREATE TABLE Checks(
     TicketID INTEGER,
     ConductorID INTEGER,
-    PRIMARY KEY(TicketID, ConductorID),
+    PRIMARY KEY (TicketID, ConductorID),
     FOREIGN KEY (TicketID) REFERENCES Ticket ON DELETE CASCADE,
     FOREIGN KEY (ConductorID) REFERENCES Conductor ON DELETE CASCADE
     );
@@ -118,9 +118,9 @@ CREATE TABLE Checks(
 CREATE TABLE Accesses(
     PassengerTrainID INTEGER,
     TicketID INTEGER,
-    PRIMARY KEY(TicketID, PassengerTrainID),
-    FOREIGN KEY(TicketID) REFERENCES Ticket ON DELETE CASCADE,
-    FOREIGN KEY(PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
+    PRIMARY KEY (TicketID, PassengerTrainID),
+    FOREIGN KEY (TicketID) REFERENCES Ticket ON DELETE CASCADE,
+    FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
     );
 
 CREATE TABLE Boards(
@@ -135,7 +135,7 @@ CREATE TABLE CargoShipment(
     ShipmentID INTEGER PRIMARY KEY,
     PurchaserID INTEGER,
     CargoType CHAR(20),
-    FOREIGN KEY (PurchaserID) REFERENCES PurchaserID,
+    FOREIGN KEY (PurchaserID) REFERENCES Purchaser,
     FOREIGN KEY (CargoType) REFERENCES CargoType
     );
 
@@ -169,6 +169,21 @@ values('8', '0', '04-APR-19 19:45:00.00', 'LAX', 'YES');
 insert into Arrival
 values('0', '5', '05-APR-19 01:05:00.00', 'NYC', 'NO');
 
+insert into Passenger
+values('1', 'Alan', '1980-12-12');
+
+insert into Passenger
+values('2', 'Abigaile', '1981-02-20');
+
+insert into Passenger
+values('3', 'Miguel', '1999-05-30');
+
+insert into Passenger
+values('4', 'Xiao', '1995-01-12');
+
+insert into Passenger
+values('5', 'Mohammad', '2000-10-19');
+
 insert into Ticket
 values('1', '90', '1');
 
@@ -186,21 +201,6 @@ values('5', '100', '4');
 
 insert into Ticket
 values('6', '65', '5');
-
-insert into Passenger
-values('1', 'Alan', '1980-12-12');
-
-insert into Passenger
-values('2', 'Abigaile', '1981-02-20');
-
-insert into Passenger
-values('3', 'Miguel', '1999-05-30');
-
-insert into Passenger
-values('4', 'Xiao', '1995-01-12');
-
-insert into Passenger
-values('5', 'Mohammad', '2000-10-19');
 
 insert into Purchaser
 values('1', 'Arlene');
@@ -232,6 +232,30 @@ values('4', 'Brianne');
 insert into Conductor
 values('5', 'Xi');
 
+insert into Model
+values('101', '50', '0');
+
+insert into Model
+values('102', '75', '0');
+
+insert into Model
+values('103', '100', '0');
+
+insert into Model
+values('104', '80', '0');
+
+insert into Model
+values('105', '0', '120');
+
+insert into Model
+values('106', '0', '250');
+
+insert into Model
+values('107', '0', '500');
+
+insert into Model
+values('108', '0', '400');
+
 insert into CargoTrain
 values('1', 'Yes', '101');
 
@@ -262,20 +286,20 @@ values('9', 'No', '106');
 insert into PassengerTrain
 values('10', 'No', '108');
 
-insert into Model
-values('101', '50', '0');
+insert into CargoType
+values('Produce', 'Delicate');
 
-insert into Model
-values('102', '75', '0');
+insert into CargoType
+values('Furniture', 'Heavy');
 
-insert into Model
-values('103', '100', '0');
+insert into CargoType
+values('Glass', 'Fragile');
 
-insert into Model
-values('106', '0', '250');
+insert into CargoType
+values('Oil and Gas', 'Explosive');
 
-insert into Model
-values('107', '0', '500');
+insert into CargoType
+values('Bulk Goods', 'Prone to leakage');
 
 insert into CargoShipment
 values('1', '1', 'Produce');
@@ -291,21 +315,6 @@ values('4', '3', 'Oil and Gas');
 
 insert into CargoShipment
 values('5', '4', 'Glass');
-
-insert into CargoType
-values('Produce', 'Delicate');
-
-insert into CargoType
-values('Furniture', 'Heavy');
-
-insert into CargoType
-values('Glass', 'Fragile');
-
-insert into CargoType
-values('Oil and Gas', 'Explosive');
-
-insert into CargoType
-values('Bulk Goods', 'Prone to leakage');
 
 insert into Technician
 values('1', 'Miguel Torrez');
@@ -323,34 +332,34 @@ insert into Technician
 values('5', 'Fernando Alonso');
 
 insert into Maintains
-values('1', '1', '0');
+values('1', '6', '0');
 
 insert into Maintains
-values('2', '3', '0');
+values('2', '8', '0');
 
 insert into Maintains
-values('3', '0', '6');
+values('3', '0', '2');
 
 insert into Maintains
-values('4', '0', '10');
+values('4', '0', '5');
 
 insert into Maintains
-values('5', '16', '0');
+values('5', '10', '0');
 
 insert into Operates
-values('0', '1', '1');
+values('0', '6', '1');
 
 insert into Operates
-values('0', '2', '3');
+values('0', '8', '2');
 
 insert into Operates
-values('6', '1', '6');
+values('1', '0', '3');
 
 insert into Operates
-values('8', '1', '10');
+values('3', '0', '4');
 
 insert into Operates
-values('0', '5', '15');
+values('0', '10', '5');
 
 insert into Checks
 values('4', '1');
@@ -368,31 +377,31 @@ insert into Checks
 values('5', '4');
 
 insert into Accesses
-values('3', '1');
+values('3', '6');
 
 insert into Accesses
-values('6', '2');
+values('6', '7');
 
 insert into Accesses
-values('2', '2');
+values('2', '7');
 
 insert into Accesses
-values('1', '4');
+values('1', '9');
 
 insert into Accesses
-values('4', '3');
+values('4', '10');
 
 insert into Boards
-values('3', '3');
+values('1', '6');
 
 insert into Boards
-values('2', '3');
+values('2', '7');
 
 insert into Boards
-values('1', '5');
+values('3', '9');
 
 insert into Boards
-values('6', '1');
+values('4', '9');
 
 insert into Boards
-values('7', '2');
+values('5', '10');
