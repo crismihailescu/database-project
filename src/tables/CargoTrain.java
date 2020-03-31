@@ -1,14 +1,17 @@
 package tables;
 
-public class CargoTrain {
+public class CargoTrain extends Train{
     private int cargoTrainID;
     private String isUnderMaintenance;
-    private int model;
+    private Integer model;
 
-    public CargoTrain(int cargoTrainID, String isUnderMaintenance, int model) {
-        this.cargoTrainID = cargoTrainID;
-        this.isUnderMaintenance = isUnderMaintenance;
-        this.model = model;
+    public CargoTrain(int cargoTrainID, String isUnderMaintenance, Integer model) {
+        super(cargoTrainID, isUnderMaintenance, model);
+    }
+
+    @Override
+    public void initializeID(int ID) {
+        this.cargoTrainID = ID;
     }
 
     public int getCargoTrainID() {
@@ -31,7 +34,7 @@ public class CargoTrain {
         return model;
     }
 
-    public void setModel(int model) {
+    public void setModel(Integer model) {
         this.model = model;
     }
 }

@@ -1,6 +1,6 @@
 package tables;
 
-public class Checks {
+public class Checks implements Table {
     int ticketID;
     int conductorID;
 

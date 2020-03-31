@@ -1,6 +1,6 @@
 package tables;
 
-public class Boards {
+public class Boards implements Table{
     int passengerTrainID;
     int passengerID;
 

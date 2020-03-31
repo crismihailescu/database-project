@@ -1,10 +1,10 @@
 package database;
 
+import org.omg.CORBA.Any;
 import tables.*;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Database {
     private static final String ORACLE_URL = "jdbc:oracle:thin:@localhost:1522:stu";
@@ -60,6 +60,24 @@ public class Database {
         }
 
         return t;
+    }
+
+    public List<Accesses> viewAccesses() throws SQLException {
+        Statement s = connection.createStatement();
+        String query = "select * from Accesses";
+        ResultSet rs = s.executeQuery(query);
+
+        List<Accesses> a = new ArrayList<>();
+        int b;
+        int c;
+
+        while (rs.next()) {
+            b = rs.getInt("PassengerTrainID");
+            c = rs.getInt("TicketID");
+            a.add(new Accesses(b,c));
+        }
+
+        return a;
     }
 
     public List<CargoTrain> viewCargoTrain() throws SQLException {
@@ -211,5 +229,162 @@ public class Database {
         String query = "delete from Ticket t where t.ticketID = " + ticketID;
         int result = s.executeUpdate(query);
         return result == 1;
+    }
+
+    public boolean insertPassengerTrain(int PassengerTrainID, String isUnderMaintenance, Integer model) throws SQLException {
+        Statement s = connection.createStatement();
+        String query;
+
+        if (model == null) {
+            query = "insert into PassengerTrain values(" + PassengerTrainID+ ", " + isUnderMaintenance + ", null)";
+        } else {
+            query = "insert into monitors values(" + PassengerTrainID + ", " + isUnderMaintenance + ", '" + model + "')";
+        }
+
+        int result = s.executeUpdate(query);
+        return result == 1;
+    }
+
+    public boolean insertCargoTrain(int CargoTrainID, String isUnderMaintenance, Integer model) throws SQLException {
+        Statement s = connection.createStatement();
+        String query;
+
+        if (model == null) {
+            query = "insert into PassengerTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ",'null')";
+        } else {
+            query = "insert into monitors values(" + CargoTrainID + ", " + isUnderMaintenance + ", " + model + ")";
+        }
+
+        int result = s.executeUpdate(query);
+        return result == 1;
+    }
+
+    public boolean updateCargoShipment(int ID, String type) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "update CargoShipment set CargoType = " + type + " where ShipmentID = " + ID;
+        int result = s.executeUpdate(query);
+        return result == 1;
+    }
+
+    public List<Map<Integer, Integer>> filterPrice(int p) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "select t.TicketID, t.Price from Ticket t where t.price < " + p;
+        ResultSet rs = s.executeQuery(query);
+
+        List<Map<Integer, Integer>> tickets = new ArrayList<>();
+        int id;
+        int pr;
+        while (rs.next()) {
+            id = rs.getInt("TicketID");
+            pr = rs.getInt("Price");
+            tickets.add(new HashMap<>(id, pr));
+        }
+        return tickets;
+    }
+
+    public List<Integer> projectIntArrivals(String column) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "select " + column + " from Arrival";
+        ResultSet rs = s.executeQuery(query);
+
+        List<Integer> temp = new ArrayList<>();
+
+        while(rs.next()) {
+            int id = rs.getInt(column);
+            temp.add(id);
+        }
+        return temp;
+    }
+
+    public List<String> projectStrArrivals(String column) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "select " + column + " from Arrival";
+        ResultSet rs = s.executeQuery(query);
+
+        List<String> temp = new ArrayList<>();
+
+        while(rs.next()) {
+            String st = rs.getString(column);
+            temp.add(st);
+        }
+        return temp;
+    }
+
+    public List<Timestamp> projectTSArrivals(String column) throws SQLException{
+        Statement s = connection.createStatement();
+        String query = "select " + column + " from Arrival";
+        ResultSet rs = s.executeQuery(query);
+
+        List<Timestamp> temp = new ArrayList<>();
+
+        while(rs.next()) {
+            Timestamp st = rs.getTimestamp(column);
+            temp.add(st);
+        }
+        return temp;
+    }
+
+    public List<Triplet<Integer, Timestamp, Timestamp>> joinArrivalDeparture (int location) throws SQLException {
+        Statement s = connection.createStatement();
+        String query = "select a.PassengerTrainID, a.CargoTrainID, a.ArrivalTime, d.DepartureTime from Arrival a " +
+                "Departure d where a.PassengerTrainID = d.PassengerTrainID AND a.CargoTrainID = d.CargoTrainID " +
+                "AND a.LocationID = " + location + " AND d.locationID = " + location;
+        ResultSet rs = s.executeQuery(query);
+
+        List<Triplet<Integer, Timestamp, Timestamp>> joinAD = new ArrayList<>();
+
+        int ct;
+        int pt;
+        Timestamp a;
+        Timestamp d;
+
+        while (rs.next()) {
+            ct = rs.getInt("CargoTrainID");
+            pt = rs.getInt("PassengerTrainID");
+            a = rs.getTimestamp("ArrivalTime");
+            d = rs.getTimestamp("DepartureTime");
+            if (ct == 0) {
+                joinAD.add(new Triplet<>(pt, a, d));
+            } else {
+                joinAD.add(new Triplet<>(ct, a ,d));
+            }
+        }
+        return joinAD;
+    }
+
+    public int numberTechnicians() throws SQLException {
+        Statement s = connection.createStatement();
+        String query = "select COUNT(TechnicianID) AS NumberTechnicians from Technician";
+        ResultSet rs = s.executeQuery(query);
+
+        return rs.getInt("NumberTechnicians");
+    }
+
+    public Map<Integer, Integer> maxPassengerCapacity() throws SQLException {
+        Statement s = connection.createStatement();
+        String query = "select MAX(TicketCount) AS MAXCOUNT, PassengerTrainID from (select COUNT(*), PassengerTrainID as TicketCount from Accesses a group by " +
+                "a.PassengerTrainID)";
+        ResultSet rs = s.executeQuery(query);
+
+        int max = rs.getInt("MAXCOUNT");
+        int id = rs.getInt("PassengerTrainID");
+        return new HashMap<>(id, max);
+    }
+
+    public List<Integer> conductingTrains() throws SQLException {
+        Statement s = connection.createStatement();
+        String query = "select c.ConductorID from Conductor c where NOT EXISTS (select o.ConductorID from " +
+                "Operates o where o.PassengerTrainID <> 0) EXCEPT (select c.ConductorID from Conductor c1 where " +
+                "c1.ConductorID = o.ConductorID)";
+        ResultSet rs = s.executeQuery(query);
+
+        List<Integer> result = new ArrayList<>();
+        int id;
+
+        while(rs.next()) {
+            id = rs.getInt("ConductorID");
+            result.add(id);
+        }
+        return result;
     }
 }

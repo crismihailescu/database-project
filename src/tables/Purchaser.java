@@ -1,6 +1,6 @@
 package tables;
 
-public class Purchaser {
+public class Purchaser implements Table {
     private int purchaserID;
     private String purchaserName;
 

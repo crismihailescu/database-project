@@ -1,6 +1,6 @@
 package tables;
 
-public class Accesses {
+public class Accesses implements Table {
     int passengerTrainID;
     int ticketID;
 

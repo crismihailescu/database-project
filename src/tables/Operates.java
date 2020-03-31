@@ -1,6 +1,6 @@
 package tables;
 
-public class Operates {
+public class Operates implements Table{
     int passengerTrainID;
     int cargoTrainID;
     int conductorID;

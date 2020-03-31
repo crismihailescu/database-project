@@ -1,6 +1,6 @@
 package tables;
 
-public class Technician {
+public class Technician implements Table{
     private int technicianID;
     private String technicianName;
 
