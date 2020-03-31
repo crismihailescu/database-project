@@ -16,6 +16,12 @@ drop table Checks;
 drop table Accesses;
 drop table Boards;
 
+CREATE TABLE Model(
+    Model INTEGER PRIMARY KEY,
+    CargoCapacity INTEGER,
+    PassengerCapacity INTEGER
+    );
+
 CREATE TABLE CargoTrain(
     CargoTrainID INTEGER PRIMARY KEY,
     IsUnderMaintenance CHAR(3),
@@ -23,25 +29,11 @@ CREATE TABLE CargoTrain(
     FOREIGN KEY (Model) REFERENCES Model ON DELETE SET NULL
     );
 
-CREATE TABLE Model(
-    Model INTEGER PRIMARY KEY,
-    CargoCapacity INTEGER,
-    PassengerCapacity INTEGER
-    );
-
 CREATE TABLE PassengerTrain(
     PassengerTrainID INTEGER PRIMARY KEY,
     IsUnderMaintenance CHAR(3),
     Model INTEGER,
     FOREIGN KEY (Model) REFERENCES Model ON DELETE SET NULL
-    );
-
-CREATE TABLE CargoShipment(
-    ShipmentID INTEGER PRIMARY KEY,
-    PurchaserID INTEGER,
-    CargoType CHAR(20),
-    FOREIGN KEY (PurchaserID) REFERENCES PurchaserID,
-    FOREIGN KEY (CargoType) REFERENCES CargoType
     );
 
 CREATE TABLE CargoType(
@@ -140,6 +132,13 @@ CREATE TABLE Boards(
     FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
     );
 
+CREATE TABLE CargoShipment(
+    ShipmentID INTEGER PRIMARY KEY,
+    PurchaserID INTEGER,
+    CargoType CHAR(20),
+    FOREIGN KEY (PurchaserID) REFERENCES PurchaserID,
+    FOREIGN KEY (CargoType) REFERENCES CargoType
+    );
 
 insert into Departure
 values('0', '1', '04-APR-19 05:05:00.00', 'YVR', 'YES');
