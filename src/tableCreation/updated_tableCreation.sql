@@ -64,14 +64,14 @@ CREATE TABLE Passenger(
 
 CREATE TABLE Ticket(
     TicketID INTEGER PRIMARY KEY,
-    PassengerID INTEGER,
     Price INTEGER,
+    PassengerID INTEGER,
     FOREIGN KEY (PassengerID) references Passenger ON DELETE CASCADE
 );
 
 CREATE TABLE Arrival(
-    PassengerTrainID INTEGER,
     CargoTrainID INTEGER,
+    PassengerTrainID INTEGER,
     ArrivalTime TIMESTAMP,
     LocationID CHAR(3),
     IsDelayed CHAR(3),
@@ -79,8 +79,8 @@ CREATE TABLE Arrival(
     );
 
 CREATE TABLE Departure(
-    PassengerTrainID INTEGER,
     CargoTrainID INTEGER,
+    PassengerTrainID INTEGER,
     DepartureTime TIMESTAMP,
     LocationID CHAR(3),
     IsDelayed CHAR(3),
@@ -98,8 +98,8 @@ CREATE TABLE Maintains(
     );
 
 CREATE TABLE Operates(
-    PassengerTrainID INTEGER,
     CargoTrainID INTEGER,
+    PassengerTrainID INTEGER,
     ConductorID INTEGER,
     PRIMARY KEY (ConductorID, PassengerTrainID, CargoTrainID),
     FOREIGN KEY (ConductorID) references Conductor ON DELETE CASCADE,
@@ -116,8 +116,8 @@ CREATE TABLE Checks(
     );
 
 CREATE TABLE Accesses(
-    PassengerTrainID INTEGER,
     TicketID INTEGER,
+    PassengerTrainID INTEGER,
     PRIMARY KEY (TicketID, PassengerTrainID),
     FOREIGN KEY (TicketID) REFERENCES Ticket ON DELETE CASCADE,
     FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
