@@ -1,7 +1,6 @@
-drop table CargoTrain;
 drop table Model;
+drop table CargoTrain;
 drop table PassengerTrain;
-drop table CargoShipment;
 drop table CargoType;
 drop table Technician;
 drop table Conductor;
@@ -15,6 +14,7 @@ drop table Operates;
 drop table Checks;
 drop table Accesses;
 drop table Boards;
+drop table CargoShipment;
 
 CREATE TABLE Model(
     ModelID INTEGER PRIMARY KEY,
@@ -24,73 +24,77 @@ CREATE TABLE Model(
 
 CREATE TABLE CargoTrain(
     CargoTrainID INTEGER PRIMARY KEY,
-    IsUnderMaintenance CHAR(3),
-    ModelID INTEGER,
+    IsUnderMaintenance CHAR(5) NOT NULL,
+    ModelID INTEGER NOT NULL,
     FOREIGN KEY (ModelID) REFERENCES Model ON DELETE SET NULL
     );
 
 CREATE TABLE PassengerTrain(
     PassengerTrainID INTEGER PRIMARY KEY,
-    IsUnderMaintenance CHAR(3),
-    ModelID INTEGER,
+    IsUnderMaintenance CHAR(5) NOT NULL,
+    ModelID INTEGER NOT NULL,
     FOREIGN KEY (ModelID) REFERENCES Model ON DELETE SET NULL
     );
 
 CREATE TABLE CargoType(
     CargoType CHAR(20) PRIMARY KEY,
-    SpecialConsiderations CHAR(20)
+    SpecialConsiderations CHAR(20) NOT NULL
     );
 
 CREATE TABLE Technician(
     TechnicianID INTEGER PRIMARY KEY,
-    TechnicianName CHAR(20)
+    TechnicianName CHAR(20) NOT NULL
     );
 
 CREATE TABLE Conductor(
     ConductorID INTEGER PRIMARY KEY,
-    ConductorName CHAR(20)
+    ConductorName CHAR(20) NOT NULL
     );
 
 CREATE TABLE Purchaser(
     PurchaserID INTEGER PRIMARY KEY,
-    PurchaserName CHAR(20)
+    PurchaserName CHAR(20) NOT NULL
     );
 
 CREATE TABLE Passenger(
     PassengerID INTEGER PRIMARY KEY,
-    Name CHAR(20),
-    DateOfBirth DATE
+    Name CHAR(20) NOT NULL,
+    DateOfBirth DATE NOT NULL
     );
 
 CREATE TABLE Ticket(
     TicketID INTEGER PRIMARY KEY,
-    Price INTEGER,
-    PassengerID INTEGER,
+    Price INTEGER NOT NULL,
+    PassengerID INTEGER NOT NULL,
     FOREIGN KEY (PassengerID) references Passenger ON DELETE CASCADE
 );
 
 CREATE TABLE Arrival(
-    CargoTrainID INTEGER,
-    PassengerTrainID INTEGER,
-    ArrivalTime TIMESTAMP,
-    LocationID CHAR(3),
-    IsDelayed CHAR(3),
-    PRIMARY KEY (CargoTrainID, PassengerTrainID, ArrivalTime, LocationID)
+    CargoTrainID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
+    ArrivalTime TIMESTAMP NOT NULL,
+    LocationID CHAR(5) NOT NULL,
+    IsDelayed CHAR(5) NOT NULL,
+    PRIMARY KEY (CargoTrainID, PassengerTrainID, ArrivalTime, LocationID),
+    FOREIGN KEY (CargoTrainID) REFERENCES CargoTrain ON DELETE SET NULL,
+    FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE SET NULL
     );
 
 CREATE TABLE Departure(
-    CargoTrainID INTEGER,
-    PassengerTrainID INTEGER,
-    DepartureTime TIMESTAMP,
-    LocationID CHAR(3),
-    IsDelayed CHAR(3),
-    PRIMARY KEY (CargoTrainID, PassengerTrainID, DepartureTime, LocationID)
-    );
+    CargoTrainID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
+    DepartureTime TIMESTAMP NOT NULL,
+    LocationID CHAR(5) NOT NULL,
+    IsDelayed CHAR(5) NOT NULL,
+    PRIMARY KEY (CargoTrainID, PassengerTrainID, DepartureTime, LocationID),
+    FOREIGN KEY (CargoTrainID) REFERENCES CargoTrain ON DELETE CASCADE ,
+    FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
+);
 
 CREATE TABLE Maintains(
-    TechnicianID INTEGER,
-    PassengerTrainID INTEGER,
-    CargoTrainID INTEGER,
+    TechnicianID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
+    CargoTrainID INTEGER NOT NULL,
     PRIMARY KEY (TechnicianID, PassengerTrainID, CargoTrainID),
     FOREIGN KEY (TechnicianID) references Technician ON DELETE CASCADE,
     FOREIGN KEY (PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
@@ -98,9 +102,9 @@ CREATE TABLE Maintains(
     );
 
 CREATE TABLE Operates(
-    CargoTrainID INTEGER,
-    PassengerTrainID INTEGER,
-    ConductorID INTEGER,
+    CargoTrainID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
+    ConductorID INTEGER NOT NULL,
     PRIMARY KEY (ConductorID, PassengerTrainID, CargoTrainID),
     FOREIGN KEY (ConductorID) references Conductor ON DELETE CASCADE,
     FOREIGN KEY (PassengerTrainID) references PassengerTrain ON DELETE CASCADE,
@@ -108,24 +112,24 @@ CREATE TABLE Operates(
     );
 
 CREATE TABLE Checks(
-    TicketID INTEGER,
-    ConductorID INTEGER,
+    TicketID INTEGER NOT NULL,
+    ConductorID INTEGER NOT NULL,
     PRIMARY KEY (TicketID, ConductorID),
     FOREIGN KEY (TicketID) REFERENCES Ticket ON DELETE CASCADE,
     FOREIGN KEY (ConductorID) REFERENCES Conductor ON DELETE CASCADE
     );
 
 CREATE TABLE Accesses(
-    TicketID INTEGER,
-    PassengerTrainID INTEGER,
+    TicketID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
     PRIMARY KEY (TicketID, PassengerTrainID),
     FOREIGN KEY (TicketID) REFERENCES Ticket ON DELETE CASCADE,
     FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
     );
 
 CREATE TABLE Boards(
-    PassengerID INTEGER,
-    PassengerTrainID INTEGER,
+    PassengerID INTEGER NOT NULL,
+    PassengerTrainID INTEGER NOT NULL,
     PRIMARY KEY (PassengerID, PassengerTrainID),
     FOREIGN KEY (PassengerID) REFERENCES Passenger ON DELETE CASCADE,
     FOREIGN KEY (PassengerTrainID) REFERENCES PassengerTrain ON DELETE CASCADE
@@ -133,104 +137,12 @@ CREATE TABLE Boards(
 
 CREATE TABLE CargoShipment(
     ShipmentID INTEGER PRIMARY KEY,
-    PurchaserID INTEGER,
-    CargoType CHAR(20),
+    PurchaserID INTEGER NOT NULL,
+    CargoType CHAR(20) NOT NULL,
     FOREIGN KEY (PurchaserID) REFERENCES Purchaser,
     FOREIGN KEY (CargoType) REFERENCES CargoType
     );
 
-insert into Departure
-values('0', '1', '04-APR-19 05:05:00.00', 'YVR', 'YES');
-
-insert into Departure
-values('6', '0', '03-APR-19 18:05:00.00', 'LAX', 'NO');
-
-insert into Departure
-values('7', '0', '04-APR-19 05:05:00.00', 'YYZ', 'NO');
-
-insert into Departure
-values('0', '4', '04-APR-19 11:20:00.00', 'NYC', 'NO');
-
-insert into Departure
-values('0', '5', '04-APR-19 17:55:00.00', 'CGY', 'NO');
-
-insert into Arrival
-values('0', '1', '04-APR-19 02:05:00.00', 'YVR', 'YES');
-
-insert into Arrival
-values('0', '2', '06-APR-19 05:05:00.00', 'LAX', 'NO');
-
-insert into Arrival
-values('6', '0', '04-APR-19 14:05:00.00', 'YVR', 'NO');
-
-insert into Arrival
-values('8', '0', '04-APR-19 19:45:00.00', 'LAX', 'YES');
-
-insert into Arrival
-values('0', '5', '05-APR-19 01:05:00.00', 'NYC', 'NO');
-
-insert into Passenger
-values('1', 'Alan', '1980-12-12');
-
-insert into Passenger
-values('2', 'Abigaile', '1981-02-20');
-
-insert into Passenger
-values('3', 'Miguel', '1999-05-30');
-
-insert into Passenger
-values('4', 'Xiao', '1995-01-12');
-
-insert into Passenger
-values('5', 'Mohammad', '2000-10-19');
-
-insert into Ticket
-values('1', '90', '1');
-
-insert into Ticket
-values('2', '40', '1');
-
-insert into Ticket
-values('3', '30', '2');
-
-insert into Ticket
-values('4', '60', '3');
-
-insert into Ticket
-values('5', '100', '4');
-
-insert into Ticket
-values('6', '65', '5');
-
-insert into Purchaser
-values('1', 'Arlene');
-
-insert into Purchaser
-values('2', 'Tanisha');
-
-insert into Purchaser
-values('3', 'Satchee');
-
-insert into Purchaser
-values('4', 'Christopher');
-
-insert into Purchaser
-values('5', 'Sahand');
-
-insert into Conductor
-values('1', 'Boris');
-
-insert into Conductor
-values('2', 'Tariq');
-
-insert into Conductor
-values('3', 'Bryce');
-
-insert into Conductor
-values('4', 'Brianne');
-
-insert into Conductor
-values('5', 'Xi');
 
 insert into Model
 values('101', '50', '0');
@@ -256,6 +168,12 @@ values('107', '0', '500');
 insert into Model
 values('108', '0', '400');
 
+insert into Model
+values('0', '0', '0');
+
+insert into CargoTrain
+values('0', 'NA', '0');
+
 insert into CargoTrain
 values('1', 'Yes', '101');
 
@@ -270,6 +188,9 @@ values('4', 'Yes', '103');
 
 insert into CargoTrain
 values('5', 'No', '104');
+
+insert into PassengerTrain
+values('0', 'NA', '0');
 
 insert into PassengerTrain
 values('6', 'No', '105');
@@ -301,21 +222,6 @@ values('Oil and Gas', 'Explosive');
 insert into CargoType
 values('Bulk Goods', 'Prone to leakage');
 
-insert into CargoShipment
-values('1', '1', 'Produce');
-
-insert into CargoShipment
-values('2', '2', 'Produce');
-
-insert into CargoShipment
-values('3', '3', 'Furniture');
-
-insert into CargoShipment
-values('4', '3', 'Oil and Gas');
-
-insert into CargoShipment
-values('5', '4', 'Glass');
-
 insert into Technician
 values('1', 'Miguel Torrez');
 
@@ -330,6 +236,101 @@ values('4', 'Bluth Corleone');
 
 insert into Technician
 values('5', 'Fernando Alonso');
+
+insert into Conductor
+values('1', 'Boris');
+
+insert into Conductor
+values('2', 'Tariq');
+
+insert into Conductor
+values('3', 'Bryce');
+
+insert into Conductor
+values('4', 'Brianne');
+
+insert into Conductor
+values('5', 'Xi');
+
+insert into Purchaser
+values('1', 'Arlene');
+
+insert into Purchaser
+values('2', 'Tanisha');
+
+insert into Purchaser
+values('3', 'Satchee');
+
+insert into Purchaser
+values('4', 'Christopher');
+
+insert into Purchaser
+values('5', 'Sahand');
+
+insert into Passenger
+values('1', 'Alan', '12-DEC-80');
+
+insert into Passenger
+values('2', 'Abigaile', '20-OCT-81');
+
+insert into Passenger
+values('3', 'Miguel', '30-MAY-99');
+
+insert into Passenger
+values('4', 'Xiao', '12-JAN-95');
+
+insert into Passenger
+values('5', 'Mohammad', '19-AUG-01');
+
+insert into Ticket
+values('1', '90', '1');
+
+insert into Ticket
+values('2', '40', '1');
+
+insert into Ticket
+values('3', '30', '2');
+
+insert into Ticket
+values('4', '60', '3');
+
+insert into Ticket
+values('5', '100', '4');
+
+insert into Ticket
+values('6', '65', '5');
+
+-- Integrity constraint violated, parent key not found for all Arrivals
+insert into Arrival
+values('1', '0', '04-APR-19 02:05:00.00', 'YVR', 'YES');
+
+insert into Arrival
+values('2', '0', '06-APR-19 05:05:00.00', 'LAX', 'NO');
+
+insert into Arrival
+values('0', '6', '04-APR-19 02:05:00.00', 'YVR', 'NO');
+
+insert into Arrival
+values('0', '8', '04-APR-19 10:45:00.00', 'LAX', 'YES');
+
+insert into Arrival
+values('5', '0', '05-APR-19 01:05:00.00', 'NYC', 'NO');
+
+-- Integrity constraint violated, parent key not found for all Departures
+insert into Departure
+values('1', '0', '04-APR-19 05:05:00.00', 'YVR', 'YES');
+
+insert into Departure
+values('0', '6', '03-APR-19 12:05:00.00', 'LAX', 'NO');
+
+insert into Departure
+values('0', '7', '04-APR-19 05:05:00.00', 'YYZ', 'NO');
+
+insert into Departure
+values('4', '0', '04-APR-19 11:20:00.00', 'NYC', 'NO');
+
+insert into Departure
+values('5', '0', '04-APR-19 11:55:00.00', 'CGY', 'NO');
 
 insert into Maintains
 values('1', '6', '0');
@@ -405,3 +406,18 @@ values('4', '9');
 
 insert into Boards
 values('5', '10');
+
+insert into CargoShipment
+values('1', '1', 'Produce');
+
+insert into CargoShipment
+values('2', '2', 'Produce');
+
+insert into CargoShipment
+values('3', '3', 'Furniture');
+
+insert into CargoShipment
+values('4', '3', 'Oil and Gas');
+
+insert into CargoShipment
+values('5', '4', 'Glass');
