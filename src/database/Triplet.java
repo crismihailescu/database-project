@@ -12,6 +12,10 @@ public class Triplet<F, S, T> {
         this.third = third;
     }
 
+    public F getFirst() { return first; }
+    public S getSecond() { return second; }
+    public T getThird() { return third; }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Triplet)) {
