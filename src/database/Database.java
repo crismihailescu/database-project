@@ -238,7 +238,7 @@ public class Database {
         String query;
 
         if (model == null) {
-            query = "insert into PassengerTrain values(" + PassengerTrainID+ ", " + isUnderMaintenance + ", null)";
+            query = "insert into PassengerTrain values(" + PassengerTrainID + ", " + isUnderMaintenance + ", null)";
         } else {
             query = "insert into PassengerTrain values(" + PassengerTrainID + ", " + isUnderMaintenance + ", " + model + ")";
         }
@@ -252,7 +252,7 @@ public class Database {
         String query;
 
         if (model == null) {
-            query = "insert into CargoTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ",'null')";
+            query = "insert into CargoTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ", null)";
         } else {
             query = "insert into CargoTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ", " + model + ")";
         }
