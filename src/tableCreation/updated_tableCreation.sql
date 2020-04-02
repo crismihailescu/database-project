@@ -220,7 +220,10 @@ insert into CargoType
 values('Oil and Gas', 'Explosive');
 
 insert into CargoType
-values('Bulk Goods', 'Prone to leakage');
+values('Frozen Foods', 'Prone to leakage');
+
+insert into CargoType
+values('Electronics', 'Shock Possible');
 
 insert into Technician
 values('1', 'Miguel Torrez');

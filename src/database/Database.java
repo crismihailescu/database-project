@@ -131,7 +131,7 @@ public class Database {
         while (rs.next()) {
             sID = rs.getInt("ShipmentID");
             type = rs.getString("CargoType");
-            cID = rs.getInt("CargoID");
+            cID = rs.getInt("PurchaserID");
             cs.add(new CargoShipment(sID, cID, type));
         }
 
