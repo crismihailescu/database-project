@@ -264,7 +264,7 @@
                         </constraints>
                         <properties>
                           <horizontalAlignment value="0"/>
-                          <text value="PassengerID"/>
+                          <text value="TicketID"/>
                         </properties>
                       </component>
                     </children>
@@ -274,7 +274,7 @@
                       <splitpane position="left"/>
                     </constraints>
                     <properties>
-                      <text value="Delete Passenger based on PassengerID"/>
+                      <text value="Delete Ticket from the Ticket table based on TicketID"/>
                     </properties>
                   </component>
                 </children>
