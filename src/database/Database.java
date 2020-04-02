@@ -14,10 +14,13 @@ public class Database {
 
     private Database() {
         try {
-            String username = "ora_cmihaile@stu";
+            String username = "ora_cmihaile";
             String password = "a50835842";
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+//          Connection error happens on next line
+            System.out.println("Test");
             connection = DriverManager.getConnection(ORACLE_URL, username, password);
+            System.out.println("Fixed");
         }
         catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());
@@ -237,7 +240,7 @@ public class Database {
         if (model == null) {
             query = "insert into PassengerTrain values(" + PassengerTrainID+ ", " + isUnderMaintenance + ", null)";
         } else {
-            query = "insert into monitors values(" + PassengerTrainID + ", " + isUnderMaintenance + ", '" + model + "')";
+            query = "insert into PassengerTrain values(" + PassengerTrainID + ", " + isUnderMaintenance + ", '" + model + "')";
         }
 
         int result = s.executeUpdate(query);
@@ -249,9 +252,9 @@ public class Database {
         String query;
 
         if (model == null) {
-            query = "insert into PassengerTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ",'null')";
+            query = "insert into CargoTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ",'null')";
         } else {
-            query = "insert into monitors values(" + CargoTrainID + ", " + isUnderMaintenance + ", " + model + ")";
+            query = "insert into CargoTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ", " + model + ")";
         }
 
         int result = s.executeUpdate(query);

@@ -112,14 +112,6 @@
                                       <text value="Submit Passenger Train"/>
                                     </properties>
                                   </component>
-                                  <component id="21e10" class="javax.swing.JTextField" binding="passengerCapacityTextField" default-binding="true">
-                                    <constraints>
-                                      <splitpane position="left"/>
-                                    </constraints>
-                                    <properties>
-                                      <text value="Passenger Capacity"/>
-                                    </properties>
-                                  </component>
                                 </children>
                               </splitpane>
                             </children>
@@ -160,7 +152,7 @@
                           <splitpane position="left"/>
                         </constraints>
                         <properties>
-                          <dividerLocation value="231"/>
+                          <dividerLocation value="401"/>
                         </properties>
                         <border type="none"/>
                         <children>
@@ -221,14 +213,6 @@
                                     </constraints>
                                     <properties>
                                       <text value="Submit Cargo Train"/>
-                                    </properties>
-                                  </component>
-                                  <component id="8175a" class="javax.swing.JTextField" binding="cargoCapacityTextField" default-binding="true">
-                                    <constraints>
-                                      <splitpane position="left"/>
-                                    </constraints>
-                                    <properties>
-                                      <text value="Cargo Capacity"/>
                                     </properties>
                                   </component>
                                 </children>
@@ -340,7 +324,7 @@
                               <splitpane position="left"/>
                             </constraints>
                             <properties>
-                              <enabled value="false"/>
+                              <enabled value="true"/>
                               <model>
                                 <item value="Produce"/>
                                 <item value="Furniture"/>
@@ -350,6 +334,9 @@
                                 <item value="Electronics"/>
                               </model>
                             </properties>
+                            <clientProperties>
+                              <html.disable class="java.lang.Boolean" value="false"/>
+                            </clientProperties>
                           </component>
                         </children>
                       </splitpane>
