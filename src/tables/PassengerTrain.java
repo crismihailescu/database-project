@@ -3,10 +3,10 @@ package tables;
 public class PassengerTrain extends Train {
     private int passengerTrainID;
     private String isUnderMaintenance;
-    private Integer model;
+    private Integer modelID;
 
-    public PassengerTrain(int passengerTrainID, String isUnderMaintenance, Integer model) {
-        super(passengerTrainID, isUnderMaintenance, model);
+    public PassengerTrain(int passengerTrainID, String isUnderMaintenance, Integer modelID) {
+        super(passengerTrainID, isUnderMaintenance, modelID);
     }
 
     @Override
@@ -22,19 +22,4 @@ public class PassengerTrain extends Train {
         this.passengerTrainID = passengerTrainID;
     }
 
-    public String getIsUnderMaintenance() {
-        return isUnderMaintenance;
-    }
-
-    public void setIsUnderMaintenance(String isUnderMaintenance) {
-        this.isUnderMaintenance = isUnderMaintenance;
-    }
-
-    public int getModel() {
-        return model;
-    }
-
-    public void setModel(Integer model) {
-        this.model = model;
-    }
 }

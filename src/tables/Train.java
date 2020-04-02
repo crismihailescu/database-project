@@ -2,11 +2,11 @@ package tables;
 
 public abstract class Train implements Table{
     private String isUnderMaintenance;
-    private Integer model;
+    private Integer modelID;
 
-    public Train(int ID, String isUnderMaintenance, Integer model) {
+    public Train(int ID, String isUnderMaintenance, Integer modelID) {
         this.isUnderMaintenance = isUnderMaintenance;
-        this.model = model;
+        this.modelID = modelID;
         initializeID(ID);
     }
 
@@ -20,11 +20,11 @@ public abstract class Train implements Table{
         this.isUnderMaintenance = isUnderMaintenance;
     }
 
-    public int getModel() {
-        return model;
+    public int getModelID() {
+        return modelID;
     }
 
-    public void setModel(Integer model) {
-        this.model = model;
+    public void setModel(Integer modelID) {
+        this.modelID = modelID;
     }
 }

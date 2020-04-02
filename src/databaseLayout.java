@@ -97,7 +97,7 @@ public class databaseLayout extends JFrame{
                             cg = iterator.next();
                             cargoTrainJTABLE[r][0] = cg.getCargoTrainID();
                             cargoTrainJTABLE[r][1] = cg.getIsUnderMaintenance();
-                            cargoTrainJTABLE[r][2] = cg.getModel();
+                            cargoTrainJTABLE[r][2] = cg.getModelID();
                         }
                     }
                     Object[] cargoTrainColumnNames = {"CargoTrainID", "IsUnderMaintenance", "Model"};
@@ -137,7 +137,7 @@ public class databaseLayout extends JFrame{
                             pg = iterator.next();
                             passengerTrainJTABLE[r][0] = pg.getPassengerTrainID();
                             passengerTrainJTABLE[r][1] = pg.getIsUnderMaintenance();
-                            passengerTrainJTABLE[r][2] = pg.getModel();
+                            passengerTrainJTABLE[r][2] = pg.getModelID();
                         }
                     }
                     Object[] passengerTrainColumnNames = {"PassengerTrainID", "IsUnderMaintenance", "Model"};

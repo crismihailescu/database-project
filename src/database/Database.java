@@ -14,7 +14,7 @@ public class Database {
 
     private Database() {
         try {
-            String username = "zhentl2z";
+            String username = "ora_zhentl2z";
             String password = "a25224149";
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             connection = DriverManager.getConnection(ORACLE_URL, username, password);
@@ -92,7 +92,7 @@ public class Database {
         while (rs.next()) {
             cgID = rs.getInt("CargoTrainID");
             maint = rs.getString("IsUnderMaintenance");
-            c = rs.getInt("Model");
+            c = rs.getInt("ModelID");
             ct.add(new CargoTrain(cgID,maint,c));
         }
 
@@ -107,15 +107,15 @@ public class Database {
         List<PassengerTrain> pt = new ArrayList<>();
         int pgID;
         String maint;
-        int c;
+        int m;
 
         while (rs.next()) {
+            System.out.println(rs.getInt("ModelID"));
             pgID = rs.getInt("PassengerTrainID");
             maint = rs.getString("IsUnderMaintenance");
-            c = rs.getInt("Model");
-            pt.add(new PassengerTrain(pgID,maint,c));
+            m = rs.getInt("ModelID");
+            pt.add(new PassengerTrain(pgID,maint,m));
         }
-
         return pt;
     }
 

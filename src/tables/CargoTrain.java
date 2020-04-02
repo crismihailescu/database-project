@@ -2,11 +2,9 @@ package tables;
 
 public class CargoTrain extends Train{
     private int cargoTrainID;
-    private String isUnderMaintenance;
-    private Integer model;
 
-    public CargoTrain(int cargoTrainID, String isUnderMaintenance, Integer model) {
-        super(cargoTrainID, isUnderMaintenance, model);
+    public CargoTrain(int cargoTrainID, String isUnderMaintenance, Integer modelID) {
+        super(cargoTrainID, isUnderMaintenance, modelID);
     }
 
     @Override
@@ -20,21 +18,5 @@ public class CargoTrain extends Train{
 
     public void setCargoTrainID(int cargoTrainID) {
         this.cargoTrainID = cargoTrainID;
-    }
-
-    public String getIsUnderMaintenance() {
-        return isUnderMaintenance;
-    }
-
-    public void setIsUnderMaintenance(String isUnderMaintenance) {
-        this.isUnderMaintenance = isUnderMaintenance;
-    }
-
-    public int getModel() {
-        return model;
-    }
-
-    public void setModel(Integer model) {
-        this.model = model;
     }
 }
