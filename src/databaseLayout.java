@@ -38,8 +38,6 @@ public class databaseLayout extends JFrame{
     private JComboBox comboBox1;
     private JButton submitCargoTrainButton;
     private JButton submitPassengerTrainButton;
-    private JTextField cargoCapacityTextField;
-    private JTextField passengerCapacityTextField;
     private JButton submitButton;
     private JTextField passengerIDTextField;
     private JButton submitButton1;
@@ -80,7 +78,6 @@ public class databaseLayout extends JFrame{
                 String cargoTrainID = cargoTrainIDTextField.getText();
                 String isUnderMaintenanceCargoTrain = (String) comboBox1.getSelectedItem();
                 String cargoTrainModel = modelTextField.getText();
-                String cargoCapacity = cargoCapacityTextField.getText();
                 try {
                     if (Database.getInstance().insertCargoTrain(Integer.parseInt(cargoTrainID), isUnderMaintenanceCargoTrain, Integer.parseInt(cargoTrainModel))) {
                         JOptionPane.showMessageDialog(null, "Inserted " + "successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -120,7 +117,6 @@ public class databaseLayout extends JFrame{
                 String passengerTrainID  = passengerTrainIDTextField.getText();
                 String isUnderMaintenancePassengerTrain = (String) JComboBoxPassenger.getSelectedItem();
                 String passengerTrainModel = modelTextField1.getText();
-                String passengerCapacity = passengerCapacityTextField.getText();
                 try {
                     if (Database.getInstance().insertPassengerTrain(Integer.parseInt(passengerTrainID), isUnderMaintenancePassengerTrain, Integer.parseInt(passengerTrainModel))) {
                         JOptionPane.showMessageDialog(null, "Inserted " + "successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
