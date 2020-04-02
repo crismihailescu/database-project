@@ -13,6 +13,21 @@ import database.Database;
 import database.Triplet;
 import tables.*;
 
+import javax.swing.*;
+import javax.xml.crypto.Data;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import database.Database;
+
+import database.Triplet;
+import tables.*;
+
 public class databaseLayout extends JFrame{
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
@@ -107,7 +122,7 @@ public class databaseLayout extends JFrame{
                 String passengerTrainModel = modelTextField1.getText();
                 String passengerCapacity = passengerCapacityTextField.getText();
                 try {
-                    if (Database.getInstance().insertCargoTrain(Integer.parseInt(passengerTrainID), isUnderMaintenancePassengerTrain, Integer.parseInt(passengerTrainModel))) {
+                    if (Database.getInstance().insertPassengerTrain(Integer.parseInt(passengerTrainID), isUnderMaintenancePassengerTrain, Integer.parseInt(passengerTrainModel))) {
                         JOptionPane.showMessageDialog(null, "Inserted " + "successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Could not insert.", "Error", JOptionPane.INFORMATION_MESSAGE);

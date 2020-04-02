@@ -235,9 +235,9 @@ public class Database {
         String query;
 
         if (model == null) {
-            query = "insert into PassengerTrain values(" + PassengerTrainID+ ", " + isUnderMaintenance + ", null)";
+            query = "insert into PassengerTrain values(" + PassengerTrainID+ ",'" + isUnderMaintenance + "',null)";
         } else {
-            query = "insert into monitors values(" + PassengerTrainID + ", " + isUnderMaintenance + ", '" + model + "')";
+            query = "insert into PassengerTrain values(" + PassengerTrainID + ",'" + isUnderMaintenance + "'," + model + ")";
         }
 
         int result = s.executeUpdate(query);
@@ -249,9 +249,9 @@ public class Database {
         String query;
 
         if (model == null) {
-            query = "insert into PassengerTrain values(" + CargoTrainID + ", " + isUnderMaintenance + ",'null')";
+            query = "insert into CargoTrain values(" + CargoTrainID + ",'" + isUnderMaintenance + "',null')";
         } else {
-            query = "insert into monitors values(" + CargoTrainID + ", " + isUnderMaintenance + ", " + model + ")";
+            query = "insert into CargoTrain values(" + CargoTrainID + ",'" + isUnderMaintenance + "', " + model + ")";
         }
 
         int result = s.executeUpdate(query);
@@ -260,7 +260,7 @@ public class Database {
 
     public boolean updateCargoShipment(int ID, String type) throws SQLException{
         Statement s = connection.createStatement();
-        String query = "update CargoShipment set CargoType = " + type + " where ShipmentID = " + ID;
+        String query = "update CargoShipment set CargoType = '" + type + "' where ShipmentID = " + ID;
         int result = s.executeUpdate(query);
         return result == 1;
     }
