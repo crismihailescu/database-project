@@ -240,7 +240,7 @@ public class Database {
         if (model == null) {
             query = "insert into PassengerTrain values(" + PassengerTrainID+ ", " + isUnderMaintenance + ", null)";
         } else {
-            query = "insert into PassengerTrain values(" + PassengerTrainID + ", " + isUnderMaintenance + ", '" + model + "')";
+            query = "insert into PassengerTrain values(" + PassengerTrainID + ", " + isUnderMaintenance + ", " + model + ")";
         }
 
         int result = s.executeUpdate(query);
