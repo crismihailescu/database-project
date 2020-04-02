@@ -6,5 +6,4 @@ public class Main {
         databaseLayout myDatabasePanel = new databaseLayout();
         myDatabasePanel.setVisible(true);
     }
-
 }
