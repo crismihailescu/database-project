@@ -264,18 +264,18 @@ public class Database {
         return result == 1;
     }
 
-    public List<Map<Integer, Integer>> filterPrice(int p) throws SQLException{
+    public List<Pair<Integer, Integer>> filterPrice(int p) throws SQLException{
         Statement s = connection.createStatement();
         String query = "select t.TicketID, t.Price from Ticket t where t.price < " + p;
         ResultSet rs = s.executeQuery(query);
 
-        List<Map<Integer, Integer>> tickets = new ArrayList<>();
+        List<Pair<Integer, Integer>> tickets = new ArrayList<>();
         int id;
         int pr;
         while (rs.next()) {
             id = rs.getInt("TicketID");
             pr = rs.getInt("Price");
-            tickets.add(new HashMap<>(id, pr));
+            tickets.add(new Pair<>(id, pr));
         }
         return tickets;
     }

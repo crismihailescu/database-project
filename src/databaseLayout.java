@@ -9,9 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import database.Database;
+import database.*;
 
-import database.Triplet;
 import tables.*;
 
 import javax.swing.*;
@@ -252,15 +251,15 @@ public class databaseLayout extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String selectTicketsBelowPrice = maxPriceTextField.getText();
                 try {
-                    List<Map<Integer, Integer>> result = Database.getInstance().filterPrice(Integer.parseInt(selectTicketsBelowPrice));
-                    Iterator<Map<Integer, Integer>> iterator = result.iterator();
-                    Map<Integer, Integer> temp;
+                    List<Pair<Integer, Integer>> result = Database.getInstance().filterPrice(Integer.parseInt(selectTicketsBelowPrice));
+                    Iterator<Pair<Integer, Integer>> iterator = result.iterator();
+                    Pair<Integer, Integer> temp;
                     Object[][] priceData = new Object[result.size()][2];
                     Object[] priceColumnNames = { "TicketID", "Price"} ;
                     for (int i = 0; i < result.size(); i++) {
                         temp = iterator.next();
-                        priceData[i][0] = temp.get("TicketID");
-                        priceData[i][1] = temp.get("Price");
+                        priceData[i][0] = temp.getLeft();
+                        priceData[i][1] = temp.getRight();
                     }
                     tableSelectTicketPrice = new JTable(priceData, priceColumnNames);
                     JFrame frame = new JFrame();
