@@ -112,6 +112,11 @@
                                       <text value="Submit Passenger Train"/>
                                     </properties>
                                   </component>
+                                  <hspacer id="86ff2">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                  </hspacer>
                                 </children>
                               </splitpane>
                             </children>
@@ -215,6 +220,11 @@
                                       <text value="Submit Cargo Train"/>
                                     </properties>
                                   </component>
+                                  <hspacer id="e71c7">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                  </hspacer>
                                 </children>
                               </splitpane>
                             </children>
@@ -648,15 +658,6 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="5b99d" class="javax.swing.JTextField" binding="trainIDTextField" default-binding="true">
-                        <constraints>
-                          <splitpane position="left"/>
-                        </constraints>
-                        <properties>
-                          <horizontalAlignment value="0"/>
-                          <text value="TrainID"/>
-                        </properties>
-                      </component>
                       <component id="74bf5" class="javax.swing.JButton" binding="submitButton5" default-binding="true">
                         <constraints>
                           <splitpane position="right"/>
@@ -665,6 +666,11 @@
                           <text value="Submit"/>
                         </properties>
                       </component>
+                      <hspacer id="bbe0d">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                      </hspacer>
                     </children>
                   </splitpane>
                   <component id="c76f9" class="javax.swing.JLabel">

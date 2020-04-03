@@ -382,16 +382,64 @@ insert into Accesses
 values('3', '6');
 
 insert into Accesses
+values('3', '7');
+
+insert into Accesses
+values('3', '8');
+
+insert into Accesses
+values('3', '9');
+
+insert into Accesses
+values('3', '10');
+
+insert into Accesses
 values('6', '7');
 
 insert into Accesses
 values('2', '7');
 
 insert into Accesses
+values('2', '8');
+
+insert into Accesses
+values('2', '9');
+
+insert into Accesses
+values('2', '10');
+
+insert into Accesses
+values('2', '6');
+
+insert into Accesses
 values('1', '9');
 
 insert into Accesses
 values('4', '10');
+
+insert into Accesses
+values('4', '9');
+
+insert into Accesses
+values('4', '8');
+
+insert into Accesses
+values('4', '7');
+
+insert into Accesses
+values('4', '6');
+
+insert into Accesses
+values('1', '6');
+
+insert into Accesses
+values('1', '7');
+
+insert into Accesses
+values('1', '8');
+
+insert into Accesses
+values('1', '10');
 
 insert into Boards
 values('1', '6');
