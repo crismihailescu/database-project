@@ -347,7 +347,7 @@ public class databaseLayout extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String joinLocationID = locationIDTextField.getText();
                 try {
-                    List<Triplet<Integer, Timestamp, Timestamp>> result = Database.getInstance().joinArrivalDeparture(Integer.parseInt(joinLocationID));
+                    List<Triplet<Integer, Timestamp, Timestamp>> result = Database.getInstance().joinArrivalDeparture(joinLocationID);
                     Iterator<Triplet<Integer, Timestamp, Timestamp>> iterator = result.iterator();
                     Triplet<Integer, Timestamp, Timestamp> temp;
                     Object[][] ADJoin = new Object[result.size()][3];
