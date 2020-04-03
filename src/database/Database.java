@@ -30,6 +30,7 @@ public class Database {
         }
         return instance;
     }
+
     public void close() {
         try {
             if (connection != null) {

@@ -303,7 +303,6 @@ values('5', '100', '4');
 insert into Ticket
 values('6', '65', '5');
 
--- Integrity constraint violated, parent key not found for all Arrivals
 insert into Arrival
 values('1', '0', '04-APR-19 02:05:00.00', 'YVR', 'YES');
 
@@ -319,7 +318,6 @@ values('0', '8', '04-APR-19 10:45:00.00', 'LAX', 'YES');
 insert into Arrival
 values('5', '0', '05-APR-19 01:05:00.00', 'NYC', 'NO');
 
--- Integrity constraint violated, parent key not found for all Departures
 insert into Departure
 values('1', '0', '04-APR-19 05:05:00.00', 'YVR', 'YES');
 
