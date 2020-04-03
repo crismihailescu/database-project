@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -99,6 +100,11 @@ public class databaseLayout extends JFrame{
                     }
                     Object[] cargoTrainColumnNames = {"CargoTrainID", "IsUnderMaintenance", "Model"};
                     tableInsertCargoTrain = new JTable(cargoTrainJTABLE, cargoTrainColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableInsertCargoTrain);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -124,7 +130,7 @@ public class databaseLayout extends JFrame{
                         JOptionPane.showMessageDialog(null, "Could not insert.", "Error", JOptionPane.INFORMATION_MESSAGE);
                     }
                     List<PassengerTrain> passengerTrainsTable = Database.getInstance().viewPassengerTrain();
-                    Object passengerTrainJTABLE[][] = new Object[0][0];
+                    Object[][] passengerTrainJTABLE = new Object[0][0];
                     if (!passengerTrainsTable.isEmpty()) {
                         passengerTrainJTABLE = new Object[passengerTrainsTable.size()][3];
                         Iterator<PassengerTrain> iterator = passengerTrainsTable.iterator();
@@ -138,6 +144,11 @@ public class databaseLayout extends JFrame{
                     }
                     Object[] passengerTrainColumnNames = {"PassengerTrainID", "IsUnderMaintenance", "Model"};
                     tableInsertPassengerTrain = new JTable(passengerTrainJTABLE, passengerTrainColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableInsertPassengerTrain);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -175,6 +186,11 @@ public class databaseLayout extends JFrame{
                     }
                     Object[] columnNames = {"TicketID", "PassengerID", "Price"};
                     tableDeleteTicket = new JTable(tid, columnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableDeleteTicket);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -213,6 +229,11 @@ public class databaseLayout extends JFrame{
                     }
                     Object[] columnNames = {"ShipmentID", "CargoType", "PurchaserID"};
                     tableUpdateCargoShipment = new JTable(c, columnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableUpdateCargoShipment);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -241,6 +262,11 @@ public class databaseLayout extends JFrame{
                         priceData[i][1] = temp.get("Price");
                     }
                     tableSelectTicketPrice = new JTable(priceData, priceColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableSelectTicketPrice);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -291,6 +317,11 @@ public class databaseLayout extends JFrame{
                             pa[i][0] = temp;
                         }
                         tableProjectArrival = new JTable(pa, pColumnName);
+                        JFrame frame = new JFrame();
+                        JScrollPane scrollPane = new JScrollPane(tableProjectArrival);
+                        frame.add(scrollPane, BorderLayout.CENTER);
+                        frame.setSize(300, 150);
+                        frame.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Error has occured", "Error", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -319,6 +350,11 @@ public class databaseLayout extends JFrame{
                         ADJoin[i][2] = temp.getThird();
                     }
                     tableJoinArrivalDeparture = new JTable(ADJoin, ADJoinColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableJoinArrivalDeparture);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -336,6 +372,11 @@ public class databaseLayout extends JFrame{
                     Object[] tempColumnNames = { "COUNT(TechnicianID)"} ;
                     temp[0][0] = result;
                     tableAggregation = new JTable(temp, tempColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableAggregation);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -355,6 +396,11 @@ public class databaseLayout extends JFrame{
                     temp[0][0] = result.get("PassengerTrainID");
                     temp[0][1] = result.get("MAXCOUNT");
                     tableNestedAggregation = new JTable(temp, tempColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableNestedAggregation);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();
@@ -377,6 +423,11 @@ public class databaseLayout extends JFrame{
                         temp[i][0] = id;
                     }
                     tableDivision = new JTable(temp, tempColumnNames);
+                    JFrame frame = new JFrame();
+                    JScrollPane scrollPane = new JScrollPane(tableDivision);
+                    frame.add(scrollPane, BorderLayout.CENTER);
+                    frame.setSize(300, 150);
+                    frame.setVisible(true);
                 } catch(SQLException er) {
                     JOptionPane.showMessageDialog(null, "Error Occurred");
                     er.printStackTrace();

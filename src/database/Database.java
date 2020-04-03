@@ -13,8 +13,8 @@ public class Database {
 
     private Database() {
         try {
-            String username = "ora_cmihaile";
-            String password = "a50835842";
+            String username = "ora_zhentl2z";
+            String password = "a25224149";
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             connection = DriverManager.getConnection(ORACLE_URL, username, password);
         }
@@ -109,7 +109,6 @@ public class Database {
         int m;
 
         while (rs.next()) {
-            System.out.println(rs.getInt("ModelID"));
             pgID = rs.getInt("PassengerTrainID");
             maint = rs.getString("IsUnderMaintenance");
             m = rs.getInt("ModelID");
@@ -324,9 +323,9 @@ public class Database {
 
     public List<Triplet<Integer, Timestamp, Timestamp>> joinArrivalDeparture (int location) throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select a.PassengerTrainID, a.CargoTrainID, a.ArrivalTime, d.DepartureTime from Arrival a " +
+        String query = "select a.PassengerTrainID, a.CargoTrainID, a.ArrivalTime, d.DepartureTime from Arrival a, " +
                 "Departure d where a.PassengerTrainID = d.PassengerTrainID AND a.CargoTrainID = d.CargoTrainID " +
-                "AND a.LocationID = " + location + " AND d.locationID = " + location;
+                "AND a.LocationID = '" + location + "' AND d.locationID = '" + location + "'";
         ResultSet rs = s.executeQuery(query);
 
         List<Triplet<Integer, Timestamp, Timestamp>> joinAD = new ArrayList<>();
