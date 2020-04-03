@@ -360,7 +360,11 @@ public class Database {
         String query = "select COUNT(TechnicianID) AS NumberTechnicians from Technician";
         ResultSet rs = s.executeQuery(query);
 
-        return rs.getInt("NumberTechnicians");
+        int a = 0;
+        while (rs.next()) {
+            a = rs.getInt("NumberTechnicians");
+        }
+        return a;
     }
 
     public Map<Integer, Integer> maxPassengerCapacity() throws SQLException {
