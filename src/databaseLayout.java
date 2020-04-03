@@ -126,6 +126,7 @@ public class databaseLayout extends JFrame{
                 try {
                     if (Database.getInstance().insertPassengerTrain(Integer.parseInt(passengerTrainID), isUnderMaintenancePassengerTrain, Integer.parseInt(passengerTrainModel))) {
                         JOptionPane.showMessageDialog(null, "Inserted " + "successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, new JScrollPane(tableInsertPassengerTrain));
                     } else {
                         JOptionPane.showMessageDialog(null, "Could not insert.", "Error", JOptionPane.INFORMATION_MESSAGE);
                     }
