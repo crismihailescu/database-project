@@ -327,7 +327,7 @@ public class Database {
         return temp;
     }
 
-    public List<Triplet<Integer, Timestamp, Timestamp>> joinArrivalDeparture (int location) throws SQLException {
+    public List<Triplet<Integer, Timestamp, Timestamp>> joinArrivalDeparture (String location) throws SQLException {
         Statement s = connection.createStatement();
         String query = "select a.PassengerTrainID, a.CargoTrainID, a.ArrivalTime, d.DepartureTime from Arrival a, " +
                 "Departure d where a.PassengerTrainID = d.PassengerTrainID AND a.CargoTrainID = d.CargoTrainID " +
