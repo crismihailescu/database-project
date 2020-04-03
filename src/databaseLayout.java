@@ -284,8 +284,8 @@ public class databaseLayout extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String projectionColumnName = (String) comboBox3.getSelectedItem();
                 try {
-                    if (projectionColumnName.equals("PassengerTrainID") || projectionColumnName.equals("CargoTrainID")) {
-                        List<Integer> result = Database.getInstance().projectIntArrivals(projectionColumnName);
+                    if (projectionColumnName.equals("TrainID")) {
+                        List<Integer> result = Database.getInstance().projectIntArrivals();
                         Iterator<Integer> iterator = result.iterator();
                         Integer temp;
                         Object[][] pa = new Object[result.size()][1];
@@ -295,6 +295,11 @@ public class databaseLayout extends JFrame{
                             pa[i][0] = temp;
                         }
                         tableProjectArrival = new JTable(pa, pColumnName);
+                        JFrame frame = new JFrame();
+                        JScrollPane scrollPane = new JScrollPane(tableProjectArrival);
+                        frame.add(scrollPane, BorderLayout.CENTER);
+                        frame.setSize(300, 150);
+                        frame.setVisible(true);
                     } else if (projectionColumnName.equals("LocationID") || projectionColumnName.equals("IsDelayed")){
                         List<String> result = Database.getInstance().projectStrArrivals(projectionColumnName);
                         Iterator<String> iterator = result.iterator();
@@ -306,6 +311,11 @@ public class databaseLayout extends JFrame{
                             pa[i][0] = temp;
                         }
                         tableProjectArrival = new JTable(pa, pColumnName);
+                        JFrame frame = new JFrame();
+                        JScrollPane scrollPane = new JScrollPane(tableProjectArrival);
+                        frame.add(scrollPane, BorderLayout.CENTER);
+                        frame.setSize(300, 150);
+                        frame.setVisible(true);
                     } else if (projectionColumnName.equals("ArrivalTime")){
                         List<Timestamp> result = Database.getInstance().projectTSArrivals(projectionColumnName);
                         Iterator<Timestamp> iterator = result.iterator();

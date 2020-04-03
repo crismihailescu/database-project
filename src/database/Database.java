@@ -280,16 +280,21 @@ public class Database {
         return tickets;
     }
 
-    public List<Integer> projectIntArrivals(String column) throws SQLException{
+    public List<Integer> projectIntArrivals() throws SQLException{
         Statement s = connection.createStatement();
-        String query = "select " + column + " from Arrival";
+        String query = "select CargoTrainID, PassengerTrainID from Arrival";
         ResultSet rs = s.executeQuery(query);
 
         List<Integer> temp = new ArrayList<>();
 
         while(rs.next()) {
-            int id = rs.getInt(column);
-            temp.add(id);
+            int id = rs.getInt("CargoTrainID");
+            int id2 = rs.getInt("PassengerTrainID");
+            if (id == 0) {
+                temp.add(id2);
+            } else {
+                temp.add(id);
+            }
         }
         return temp;
     }
