@@ -376,6 +376,22 @@ public class databaseLayout extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    List<Technician> view = Database.getInstance().viewTechnician();
+                    Iterator<Technician> iterator = view.iterator();
+                    Object[][] viewTemp = new Object[view.size()][2];
+                    Object[] viewColumnNames = {"TechnicianID, TechnicianName"};
+                    Technician t;
+                    for (int i = 0; i < view.size(); i++) {
+                        t = iterator.next();
+                        viewTemp[i][0] = t.getTechnicianID();
+                        viewTemp[i][1] = t.getTechnicianName();
+                    }
+                    JTable viewTechnician = new JTable(viewTemp, viewColumnNames);
+                    JFrame frame2 = new JFrame();
+                    JScrollPane scrollPane1 = new JScrollPane(viewTechnician);
+                    frame2.add(scrollPane1, BorderLayout.CENTER);
+                    frame2.setSize(300, 150);
+                    frame2.setVisible(true);
                     int result = Database.getInstance().numberTechnicians();
                     Object[][] temp = new Object[1][1];
                     Object[] tempColumnNames = { "COUNT(TechnicianID)"} ;
