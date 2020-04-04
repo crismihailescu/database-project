@@ -397,7 +397,6 @@ public class databaseLayout extends JFrame{
         submitButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nestedAggregationColumn = trainIDTextField.getText();
                 try {
                     Map<Integer, Integer> result = Database.getInstance().maxPassengerCapacity();
                     Object[][] temp = new Object[1][2];

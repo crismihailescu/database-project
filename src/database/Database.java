@@ -13,8 +13,8 @@ public class Database {
 
     private Database() {
         try {
-            String username = "ora_zhentl2z";
-            String password = "a25224149";
+            String username = "ora_cmihaile";
+            String password = "a50835842";
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             connection = DriverManager.getConnection(ORACLE_URL, username, password);
         }
