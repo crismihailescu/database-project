@@ -367,15 +367,22 @@ public class Database {
         return a;
     }
 
-    public Map<Integer, Integer> maxPassengerCapacity() throws SQLException {
+    public List<Pair<Integer, Integer>> maxPassengerCapacity() throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select MAX(TicketCount) AS MAXCOUNT, PassengerTrainID from (select COUNT(*), PassengerTrainID as TicketCount from Accesses a group by " +
-                "a.PassengerTrainID)";
+        String query = "select MAX(TicketCount) AS MAXCOUNT, PassengerTrainID from " +
+                "(select COUNT(*) as TicketCount, PassengerTrainID from Accesses a group by a.PassengerTrainID) " +
+                "group by passengertrainid";
         ResultSet rs = s.executeQuery(query);
 
-        int max = rs.getInt("MAXCOUNT");
-        int id = rs.getInt("PassengerTrainID");
-        return new HashMap<>(id, max);
+        List<Pair<Integer, Integer>> result = new ArrayList<>();
+        int max = 0;
+        int id = 0;
+        while (rs.next()) {
+            max = rs.getInt("MAXCOUNT");
+            id = rs.getInt("PassengerTrainID");
+            result.add(new Pair<>(id, max));
+        }
+        return result;
     }
 
     public List<Integer> conductingTrains() throws SQLException {

@@ -399,11 +399,16 @@ public class databaseLayout extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String nestedAggregationColumn = trainIDTextField.getText();
                 try {
-                    Map<Integer, Integer> result = Database.getInstance().maxPassengerCapacity();
-                    Object[][] temp = new Object[1][2];
+                    List<Pair<Integer, Integer>> result = Database.getInstance().maxPassengerCapacity();
+                    Iterator<Pair<Integer, Integer>> iterator = result.iterator();
+                    Pair<Integer, Integer> a;
+                    Object[][] temp = new Object[result.size()][2];
                     Object[] tempColumnNames = {"PassengerTrainID", "MAXCOUNT"};
-                    temp[0][0] = result.get("PassengerTrainID");
-                    temp[0][1] = result.get("MAXCOUNT");
+                    for (int i = 0; i < result.size(); i++) {
+                        a = iterator.next();
+                        temp[i][0] = a.getLeft();
+                        temp[i][1] = a.getRight();
+                    }
                     tableNestedAggregation = new JTable(temp, tempColumnNames);
                     JFrame frame = new JFrame();
                     JScrollPane scrollPane = new JScrollPane(tableNestedAggregation);
