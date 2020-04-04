@@ -678,7 +678,7 @@
                       <splitpane position="left"/>
                     </constraints>
                     <properties>
-                      <text value="Run Nested Aggregation query to find number of passengers based on inputted TrainID, if left blank all train counts will be returned"/>
+                      <text value="Nested Aggregation tells us the average number of customers over all trains."/>
                     </properties>
                   </component>
                 </children>
