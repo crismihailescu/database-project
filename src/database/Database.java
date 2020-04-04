@@ -367,37 +367,33 @@ public class Database {
         return a;
     }
 
-    public List<Pair<Integer, Integer>> maxPassengerCapacity() throws SQLException {
+    public int avgPassengerCapacity() throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select MAX(TicketCount) AS MAXCOUNT, PassengerTrainID from " +
-                "(select COUNT(*) as TicketCount, PassengerTrainID from Accesses a group by a.PassengerTrainID) " +
-                "group by passengertrainid";
+        String query = "select AVG(TicketCount) as average from (select COUNT(*) as TicketCount, PassengerTrainID " +
+                "from Accesses a group by a.PassengerTrainID)";
         ResultSet rs = s.executeQuery(query);
 
-        List<Pair<Integer, Integer>> result = new ArrayList<>();
-        int max = 0;
-        int id = 0;
+        int avg = 0;
         while (rs.next()) {
-            max = rs.getInt("MAXCOUNT");
-            id = rs.getInt("PassengerTrainID");
-            result.add(new Pair<>(id, max));
+            avg = rs.getInt("average");
         }
-        return result;
+        return avg;
     }
 
-    public List<Integer> conductingTrains() throws SQLException {
+    public List<String> locationHasAllTrains() throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select c.ConductorID from Conductor c where NOT EXISTS (select o.ConductorID from " +
-                "Operates o where o.PassengerTrainID <> 0) EXCEPT (select c.ConductorID from Conductor c1 where " +
-                "c1.ConductorID = o.ConductorID)";
+        String query = "select distinct a.locationid from arrival a where NOT EXISTS " +
+                "(select p.passengertrainid from passengertrain p where NOT EXISTS " +
+                "(select a2.passengertrainid from arrival a2 where a2.passengertrainid" +
+                " = p.passengertrainid and a2.locationid = a.locationid))";
         ResultSet rs = s.executeQuery(query);
 
-        List<Integer> result = new ArrayList<>();
-        int id;
+        List<String> result = new ArrayList<>();
+        String str;
 
         while(rs.next()) {
-            id = rs.getInt("ConductorID");
-            result.add(id);
+            str = rs.getString("LocationID");
+            result.add(str);
         }
         return result;
     }

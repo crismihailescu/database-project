@@ -397,18 +397,11 @@ public class databaseLayout extends JFrame{
         submitButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nestedAggregationColumn = trainIDTextField.getText();
                 try {
-                    List<Pair<Integer, Integer>> result = Database.getInstance().maxPassengerCapacity();
-                    Iterator<Pair<Integer, Integer>> iterator = result.iterator();
-                    Pair<Integer, Integer> a;
-                    Object[][] temp = new Object[result.size()][2];
-                    Object[] tempColumnNames = {"PassengerTrainID", "MAXCOUNT"};
-                    for (int i = 0; i < result.size(); i++) {
-                        a = iterator.next();
-                        temp[i][0] = a.getLeft();
-                        temp[i][1] = a.getRight();
-                    }
+                    int result = Database.getInstance().avgPassengerCapacity();
+                    Object[][] temp = new Object[1][1];
+                    Object[] tempColumnNames = {"Average PassengerTrain Customers"};
+                    temp[0][0] = result;
                     tableNestedAggregation = new JTable(temp, tempColumnNames);
                     JFrame frame = new JFrame();
                     JScrollPane scrollPane = new JScrollPane(tableNestedAggregation);
@@ -427,11 +420,11 @@ public class databaseLayout extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    List<Integer> result = Database.getInstance().conductingTrains();
+                    List<String> result = Database.getInstance().locationHasAllTrains();
                     Object[][] temp = new Object[result.size()][1];
-                    Object[] tempColumnNames = {"ConductorID"};
-                    Iterator<Integer> iterator = result.iterator();
-                    Integer id;
+                    Object[] tempColumnNames = {"LocationID"};
+                    Iterator<String> iterator = result.iterator();
+                    String id;
                     for (int i = 0; i < result.size(); i++) {
                         id = iterator.next();
                         temp[i][0] = id;
