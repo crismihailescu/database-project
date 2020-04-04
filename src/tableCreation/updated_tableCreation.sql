@@ -310,10 +310,28 @@ insert into Arrival
 values('2', '0', '06-APR-19 05:05:00.00', 'LAX', 'NO');
 
 insert into Arrival
-values('0', '6', '04-APR-19 02:05:00.00', 'YVR', 'NO');
+values('0', '6', '04-APR-19 02:05:00.00', 'YVR', 'YES');
 
 insert into Arrival
-values('0', '8', '04-APR-19 10:45:00.00', 'LAX', 'YES');
+values('0', '7', '05-APR-19 02:05:00.00', 'YVR', 'NO');
+
+insert into Arrival
+values('0', '9', '07-APR-19 02:05:00.00', 'YVR', 'YES');
+
+insert into Arrival
+values('0', '10', '08-APR-19 02:05:00.00', 'YVR', 'NO');
+
+insert into Arrival
+values('0', '6', '06-APR-19 02:05:00.00', 'LAX', 'NO');
+
+insert into Arrival
+values('0', '6', '08-APR-19 02:05:00.00', 'NYC', 'NO');
+
+insert into Arrival
+values('0', '8', '06-APR-19 10:45:00.00', 'YVR', 'YES');
+
+insert into Arrival
+values('0', '6', '10-APR-19 02:05:00.00', 'CGY', 'NO');
 
 insert into Arrival
 values('5', '0', '05-APR-19 01:05:00.00', 'NYC', 'NO');
@@ -382,16 +400,64 @@ insert into Accesses
 values('3', '6');
 
 insert into Accesses
+values('3', '7');
+
+insert into Accesses
+values('3', '8');
+
+insert into Accesses
+values('3', '9');
+
+insert into Accesses
+values('3', '10');
+
+insert into Accesses
 values('6', '7');
 
 insert into Accesses
 values('2', '7');
 
 insert into Accesses
+values('2', '8');
+
+insert into Accesses
+values('2', '9');
+
+insert into Accesses
+values('2', '10');
+
+insert into Accesses
+values('2', '6');
+
+insert into Accesses
 values('1', '9');
 
 insert into Accesses
 values('4', '10');
+
+insert into Accesses
+values('4', '9');
+
+insert into Accesses
+values('4', '8');
+
+insert into Accesses
+values('4', '7');
+
+insert into Accesses
+values('4', '6');
+
+insert into Accesses
+values('1', '6');
+
+insert into Accesses
+values('1', '7');
+
+insert into Accesses
+values('1', '8');
+
+insert into Accesses
+values('1', '10');
 
 insert into Boards
 values('1', '6');
