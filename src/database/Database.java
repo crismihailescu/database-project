@@ -61,23 +61,6 @@ public class Database {
         return t;
     }
 
-    public List<Accesses> viewAccesses() throws SQLException {
-        Statement s = connection.createStatement();
-        String query = "select * from Accesses";
-        ResultSet rs = s.executeQuery(query);
-
-        List<Accesses> a = new ArrayList<>();
-        int b;
-        int c;
-
-        while (rs.next()) {
-            b = rs.getInt("PassengerTrainID");
-            c = rs.getInt("TicketID");
-            a.add(new Accesses(b,c));
-        }
-
-        return a;
-    }
 
     public List<CargoTrain> viewCargoTrain() throws SQLException {
         Statement s = connection.createStatement();
