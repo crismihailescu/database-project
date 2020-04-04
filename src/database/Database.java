@@ -367,30 +367,33 @@ public class Database {
         return a;
     }
 
-    public Map<Integer, Integer> maxPassengerCapacity() throws SQLException {
+    public int avgPassengerCapacity() throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select MAX(TicketCount) AS MAXCOUNT, PassengerTrainID from (select COUNT(*), PassengerTrainID as TicketCount from Accesses a group by " +
-                "a.PassengerTrainID)";
+        String query = "select AVG(TicketCount) as average from (select COUNT(*) as TicketCount, PassengerTrainID " +
+                "from Accesses a group by a.PassengerTrainID)";
         ResultSet rs = s.executeQuery(query);
 
-        int max = rs.getInt("MAXCOUNT");
-        int id = rs.getInt("PassengerTrainID");
-        return new HashMap<>(id, max);
+        int avg = 0;
+        while (rs.next()) {
+            avg = rs.getInt("average");
+        }
+        return avg;
     }
 
-    public List<Integer> conductingTrains() throws SQLException {
+    public List<String> locationHasAllTrains() throws SQLException {
         Statement s = connection.createStatement();
-        String query = "select c.ConductorID from Conductor c where NOT EXISTS (select o.ConductorID from " +
-                "Operates o where o.PassengerTrainID <> 0) EXCEPT (select c.ConductorID from Conductor c1 where " +
-                "c1.ConductorID = o.ConductorID)";
+        String query = "select distinct a.locationid from arrival a where NOT EXISTS " +
+                "(select p.passengertrainid from passengertrain p where NOT EXISTS " +
+                "(select a2.passengertrainid from arrival a2 where a2.passengertrainid" +
+                " = p.passengertrainid and a2.locationid = a.locationid))";
         ResultSet rs = s.executeQuery(query);
 
-        List<Integer> result = new ArrayList<>();
-        int id;
+        List<String> result = new ArrayList<>();
+        String str;
 
         while(rs.next()) {
-            id = rs.getInt("ConductorID");
-            result.add(id);
+            str = rs.getString("LocationID");
+            result.add(str);
         }
         return result;
     }

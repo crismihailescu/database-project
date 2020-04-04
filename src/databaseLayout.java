@@ -398,11 +398,10 @@ public class databaseLayout extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Map<Integer, Integer> result = Database.getInstance().maxPassengerCapacity();
-                    Object[][] temp = new Object[1][2];
-                    Object[] tempColumnNames = {"PassengerTrainID", "MAXCOUNT"};
-                    temp[0][0] = result.get("PassengerTrainID");
-                    temp[0][1] = result.get("MAXCOUNT");
+                    int result = Database.getInstance().avgPassengerCapacity();
+                    Object[][] temp = new Object[1][1];
+                    Object[] tempColumnNames = {"Average PassengerTrain Customers"};
+                    temp[0][0] = result;
                     tableNestedAggregation = new JTable(temp, tempColumnNames);
                     JFrame frame = new JFrame();
                     JScrollPane scrollPane = new JScrollPane(tableNestedAggregation);
@@ -421,11 +420,11 @@ public class databaseLayout extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    List<Integer> result = Database.getInstance().conductingTrains();
+                    List<String> result = Database.getInstance().locationHasAllTrains();
                     Object[][] temp = new Object[result.size()][1];
-                    Object[] tempColumnNames = {"ConductorID"};
-                    Iterator<Integer> iterator = result.iterator();
-                    Integer id;
+                    Object[] tempColumnNames = {"LocationID"};
+                    Iterator<String> iterator = result.iterator();
+                    String id;
                     for (int i = 0; i < result.size(); i++) {
                         id = iterator.next();
                         temp[i][0] = id;
